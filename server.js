@@ -9,9 +9,12 @@ const PORT = process.env.PORT;
 
 // Middleware
 app.use(express.json());
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'ok', message: '🩺 Server is healthy!' });
+});
 
 // Routes
-app.use('/api/users', userRoutes);
+app.use('/', userRoutes);
 
 // Connect to MongoDB and start server
 mongoose.connect(process.env.MONGO_URI)
